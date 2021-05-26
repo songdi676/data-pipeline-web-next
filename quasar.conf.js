@@ -95,6 +95,13 @@ module.exports = configure(function (ctx) {
           pathRewrite: {
             '^/burrow': ''
           }
+        },          
+        '/kafdrop': {
+          target: 'http://10.1.8.20:32213',
+          changeOrigin: true,
+          pathRewrite: {
+            '^/kafdrop': ''
+          }
         }
       }
     },

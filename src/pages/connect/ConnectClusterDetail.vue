@@ -236,7 +236,7 @@ export default defineComponent({
 
     const detail = (row) => {
       connectDialogState.connectDialog = true;
-     connectDialogState. detailInfo=row
+     connectDialogState.detailInfo=row
     };
     const editConnect = (row) => {
       $q.notify("等待实现");

@@ -61,7 +61,7 @@ const linksList = [
     title: 'Kafka 管理',
     caption: 'Kafka topic',
     icon: 'code',
-    link: 'https://github.com/quasarframework'
+    link: '/kafka'
   },
   {
     title: '数据源',

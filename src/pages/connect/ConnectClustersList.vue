@@ -119,6 +119,8 @@ export default defineComponent({
     const $q = useQuasar();
     serviceOptions.axios =
       internalInstance.appContext.config.globalProperties.$api;
+    const  dataPipelineApi =
+      internalInstance.appContext.config.globalProperties.$dataPipelineApi;
     onMounted(() => {
       query();
     });
@@ -172,9 +174,10 @@ export default defineComponent({
     });
 
     const query = () => {
-      ConnectClustersControllerService.list().then((r) => {
-        state.data = r;
+      dataPipelineApi.dataPipeline.getClustersUsingGet().then((r) => {
+        state.data = r.data;
       });
+   
     };
      const toDetail = (row) => {
        let groupId = row.metadata.name.replace("connect-", "");

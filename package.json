@@ -7,12 +7,16 @@
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "build:api": "node ./api-build/generateApi.js",
+    "build:kafka-api": "node ./api-build/generateApi-kafka.js",
+    "build:Kafdrop-api": "node ./api-build/generateApi-Kafdrop.js"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "kafka-rest-client-axios": "0.0.1",
     "quasar": "^2.0.0-beta.1"
   },
   "devDependencies": {
@@ -21,7 +25,8 @@
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^7.0.0",
-    "eslint-webpack-plugin": "^2.4.0"
+    "eslint-webpack-plugin": "^2.4.0",
+    "swagger-typescript-api": "^9.1.0"
   },
   "browserslist": [
     "last 10 Chrome versions",
