@@ -8,6 +8,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
+    "build": "quasar build -m pwa",
     "build:api": "node ./api-build/generateApi.js",
     "build:kafka-api": "node ./api-build/generateApi-kafka.js",
     "build:Kafdrop-api": "node ./api-build/generateApi-Kafdrop.js"
