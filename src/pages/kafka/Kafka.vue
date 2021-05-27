@@ -33,57 +33,55 @@ import {
   onMounted,
   getCurrentInstance,
   reactive,
-  toRefs,
-} from "vue";
-import { useRoute, useRouter } from "vue-router";
+  toRefs
+} from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 export default defineComponent({
-  name: "Kafka",
-  setup() {
-    const internalInstance = getCurrentInstance();
-    const router = useRouter();
+  name: 'Kafka',
+  setup () {
+    const internalInstance = getCurrentInstance()
+    const router = useRouter()
     const kafkaApi =
-      internalInstance.appContext.config.globalProperties.$kafkaApi;
+      internalInstance.appContext.config.globalProperties.$kafkaApi
     const tableState = reactive({
       columns: [
         {
-          name: "cluster_id",
-          label: "ID",
-          align: "left",
-          field: "cluster_id",
+          name: 'cluster_id',
+          label: 'ID',
+          align: 'left',
+          field: 'cluster_id'
         },
         {
-          name: "kind",
-          label: "类型",
-          align: "left",
-          field: "kind",
+          name: 'kind',
+          label: '类型',
+          align: 'left',
+          field: 'kind'
         },
         {
-          name: "operate",
-          align: "left",
-          label: "操作",
-        },
+          name: 'operate',
+          align: 'left',
+          label: '操作'
+        }
       ],
-      rows: [],
-    });
+      rows: []
+    })
     onMounted(() => {
-      query();
-    });
+      query()
+    })
     const query = () => {
       kafkaApi.clusters.clustersList().then((r) => {
-        tableState.rows = r.data.data;
-      });
-    };
-
+        tableState.rows = r.data.data
+      })
+    }
 
     const detail = (row) => {
-      router.push({ path: '/kafka-detail', query: { clusterId:row.cluster_id }  })
-    };
+      router.push({ path: '/kafka-detail', query: { clusterId: row.cluster_id } })
+    }
 
-    
     return {
       ...toRefs(tableState),
-      detail,
-    };
-  },
-});
+      detail
+    }
+  }
+})
 </script>

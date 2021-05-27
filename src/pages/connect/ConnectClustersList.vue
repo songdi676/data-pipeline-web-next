@@ -103,121 +103,119 @@ import {
   onMounted,
   getCurrentInstance,
   reactive,
-  toRefs,
-} from "vue";
+  toRefs
+} from 'vue'
 import {
   ConnectClustersControllerService,
-  serviceOptions,
-} from "src/api/data-pipeline/indexv3";
+  serviceOptions
+} from 'src/api/data-pipeline/indexv3'
 import { useRoute, useRouter } from 'vue-router'
-import { useQuasar } from "quasar";
+import { useQuasar } from 'quasar'
 export default defineComponent({
-  name: "ConnectClustersList",
-  setup() {
-    const internalInstance = getCurrentInstance();
+  name: 'ConnectClustersList',
+  setup () {
+    const internalInstance = getCurrentInstance()
     const router = useRouter()
-    const $q = useQuasar();
+    const $q = useQuasar()
     serviceOptions.axios =
-      internalInstance.appContext.config.globalProperties.$api;
-    const  dataPipelineApi =
-      internalInstance.appContext.config.globalProperties.$dataPipelineApi;
+      internalInstance.appContext.config.globalProperties.$api
+    const dataPipelineApi =
+      internalInstance.appContext.config.globalProperties.$dataPipelineApi
     onMounted(() => {
-      query();
-    });
+      query()
+    })
 
     const state = reactive({
       columns: [
         {
-          name: "groupId",
-          label: "连接器集群名称",
-          align: "left",
-          field: (row) => row.metadata.name,
+          name: 'groupId',
+          label: '连接器集群名称',
+          align: 'left',
+          field: (row) => row.metadata.name
         },
         {
-          name: "Pods()",
-          align: "left",
-          label: "Pods",
+          name: 'Pods()',
+          align: 'left',
+          label: 'Pods',
           field: (row) =>
-            row.status.availableReplicas + "/" + row.status.replicas,
+            row.status.availableReplicas + '/' + row.status.replicas
         },
         {
-          name: "replicas",
-          label: "运行实例数",
-          field: (row) => row.spec.replicas,
+          name: 'replicas',
+          label: '运行实例数',
+          field: (row) => row.spec.replicas
         },
         {
-          name: "creationTimestamp",
-          label: "时间",
-          field: (row) => row.metadata.creationTimestamp,
+          name: 'creationTimestamp',
+          label: '时间',
+          field: (row) => row.metadata.creationTimestamp
         },
         {
-          name: "status",
-          label: "状态",
-          field: (row) => row.status.conditions,
+          name: 'status',
+          label: '状态',
+          field: (row) => row.status.conditions
         },
         {
-          name: "operate",
-          label: "操作",
-        },
+          name: 'operate',
+          label: '操作'
+        }
       ],
       data: [],
-      filter: "",
-    });
+      filter: ''
+    })
 
     const addState = reactive({
       addConnectDialog: false,
       addForm: {
-        bootstrapServers: "",
+        bootstrapServers: '',
         replicas: 1,
-        groupId: "",
-      },
-    });
+        groupId: ''
+      }
+    })
 
     const query = () => {
       dataPipelineApi.dataPipeline.getClustersUsingGet().then((r) => {
-        state.data = r.data;
-      });
-   
-    };
-     const toDetail = (row) => {
-       let groupId = row.metadata.name.replace("connect-", "");
-      router.push({ path: '/connect-detail', query: { groupId }  })
-    };
+        state.data = r.data
+      })
+    }
+    const toDetail = (row) => {
+      const groupId = row.metadata.name.replace('connect-', '')
+      router.push({ path: '/connect-detail', query: { groupId } })
+    }
 
-    
     const addConnectCluster = () => {
-      addState.addConnectDialog = true;
-    };
+      addState.addConnectDialog = true
+    }
     const onSubmitAdd = () => {
       ConnectClustersControllerService.connectClusters({
-        body: addState.addForm,
+        body: addState.addForm
       }).then((r) => {
-        addState.addConnectDialog = false;
-        $q.notify("添加成功");
-        query();
-      });
-    };
+        addState.addConnectDialog = false
+        $q.notify('添加成功')
+        query()
+      })
+    }
     const onResetAdd = () => {
-      addState.addConnectDialog = false;
-    };
+      addState.addConnectDialog = false
+    }
     const deleteConnectCluster = (row) => {
-      let groupId = row.metadata.name.replace("connect-", "");
+      const groupId = row.metadata.name.replace('connect-', '')
       $q.dialog({
-        title: "确认",
+        title: '确认',
         message: `确认删除${groupId}连接器集群？`,
         cancel: true,
         persistent: true,
-        bgColor: "purple",
+        bgColor: 'purple'
       }).onOk(() => {
         // console.log('>>>> OK')
         ConnectClustersControllerService.connectClusters1({
-          groupId: groupId,
+          groupId: groupId
         }).then((r) => {
-          $q.notify("删除成功");
-          query();
-        });
-      });
-    };
+          $q.notify('删除成功')
+          query()
+        })
+      })
+    }
 
     return {
       ...toRefs(state),
@@ -226,8 +224,8 @@ export default defineComponent({
       addConnectCluster,
       onSubmitAdd,
       onResetAdd,
-      deleteConnectCluster,
-    };
-  },
-});
+      deleteConnectCluster
+    }
+  }
+})
 </script>

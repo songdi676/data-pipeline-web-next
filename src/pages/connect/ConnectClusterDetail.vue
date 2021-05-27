@@ -138,150 +138,151 @@ import {
   onMounted,
   getCurrentInstance,
   reactive,
-  toRefs,
-} from "vue";
+  toRefs
+} from 'vue'
 import {
   ConnectorsControllerService,
   ConnectorsLifecycleControllerService,
-  serviceOptions,
-} from "src/api/data-pipeline/indexv3";
-import { useRoute, useRouter } from "vue-router";
-import { useQuasar } from "quasar";
-import ConnectorDetail from "src/pages/connect/ConnectorDetail.vue";
+  serviceOptions
+} from 'src/api/data-pipeline/indexv3'
+import { useRoute, useRouter } from 'vue-router'
+import { useQuasar } from 'quasar'
+import ConnectorDetail from 'src/pages/connect/ConnectorDetail.vue'
 export default defineComponent({
-  name: "ConnectClusterDetail",
+  name: 'ConnectClusterDetail',
   components: { ConnectorDetail },
-  setup() {
-    const internalInstance = getCurrentInstance();
-    const router = useRouter();
-    const route = useRoute();
-    const $q = useQuasar();
+  setup () {
+    const internalInstance = getCurrentInstance()
+    const router = useRouter()
+    const route = useRoute()
+    const $q = useQuasar()
     serviceOptions.axios =
-      internalInstance.appContext.config.globalProperties.$api;
-    const { groupId } = route.query;
+      internalInstance.appContext.config.globalProperties.$api
+    const { groupId } = route.query
     onMounted(() => {
-      query(groupId);
-    });
+      query(groupId)
+    })
     const state = reactive({
       columns: [
         {
-          name: "name",
-          label: "连接器名称",
-          align: "left",
-          field: "name",
+          name: 'name',
+          label: '连接器名称',
+          align: 'left',
+          field: 'name'
         },
         {
-          name: "类型",
-          align: "left",
-          label: "类型",
-          field: (row) => row.status.type,
+          name: '类型',
+          align: 'left',
+          label: '类型',
+          field: (row) => row.status.type
         },
         {
-          name: "class",
-          label: "Class",
-          align: "left",
-          field: (row) => row.info.config["connector.class"],
+          name: 'class',
+          label: 'Class',
+          align: 'left',
+          field: (row) => row.info.config[ 'connector.class' ]
         },
         {
-          name: "status",
-          label: "状态",
-          align: "left",
-          field: (row) => row.status.connector.state,
+          name: 'status',
+          label: '状态',
+          align: 'left',
+          field: (row) => row.status.connector.state
         },
         {
-          name: "taskStatus",
-          label: "任务状态",
-          align: "left",
+          name: 'taskStatus',
+          label: '任务状态',
+          align: 'left'
         },
         {
-          name: "operate",
-          align: "left",
-          label: "操作",
-        },
+          name: 'operate',
+          align: 'left',
+          label: '操作'
+        }
       ],
       data: [],
-      filter: "",
-    });
+      filter: ''
+    })
     const connectorState = reactive({
       connectorState: {
-        RUNNING: "positive",
-        FAILED: "negative",
-        PAUSED: "grey-6",
-      },
-    });
+        RUNNING: 'positive',
+        FAILED: 'negative',
+        PAUSED: 'grey-6'
+      }
+    })
     const query = (groupId) => {
       ConnectorsControllerService.expand({ cluster: groupId }).then((r) => {
-        state.data = r;
-      });
-    };
+        state.data = r
+      })
+    }
     const parseTaskStatus = (tasks) => {
-      let map = {};
+      const map = {}
       for (const task of tasks) {
         if (task.state) {
-          if (map[task.state]) {
-            let value = map[task.state];
-            map[task.state] = value + 1;
-          } else {
-            map[task.state] = 1;
+          if (map[ task.state ]) {
+            const value = map[ task.state ]
+            map[ task.state ] = value + 1
+          }
+          else {
+            map[ task.state ] = 1
           }
         }
       }
 
-      return map;
-    };
+      return map
+    }
     const connectDialogState = reactive({
       connectDialog: false,
-      detailInfo:{}
-    });
+      detailInfo: {}
+    })
 
     const detail = (row) => {
-      connectDialogState.connectDialog = true;
-     connectDialogState.detailInfo=row
-    };
+      connectDialogState.connectDialog = true
+      connectDialogState.detailInfo = row
+    }
     const editConnect = (row) => {
-      $q.notify("等待实现");
-    };
+      $q.notify('等待实现')
+    }
     const deleteConnect = (row) => {
       $q.dialog({
-        title: "确认",
+        title: '确认',
         message: `确认删除${row.name}连接器？`,
         cancel: true,
         persistent: true,
-        bgColor: "purple",
+        bgColor: 'purple'
       }).onOk(() => {
         ConnectorsLifecycleControllerService.connector1({
           cluster: groupId,
-          connectorname: row.name,
+          connectorname: row.name
         }).then((r) => {
-          $q.notify("删除成功");
-        });
-      });
-    };
+          $q.notify('删除成功')
+        })
+      })
+    }
     const pauseConnect = (row) => {
-      debugger;
+      debugger
       ConnectorsLifecycleControllerService.pause({
         cluster: groupId,
-        connectorname: row.name,
+        connectorname: row.name
       }).then((r) => {
-        $q.notify("暂停成功");
-      });
-    };
+        $q.notify('暂停成功')
+      })
+    }
     const resumeConnect = (row) => {
       ConnectorsLifecycleControllerService.resume({
         cluster: groupId,
-        connectorname: row.name,
+        connectorname: row.name
       }).then((r) => {
-        $q.notify("恢复成功");
-      });
-    };
+        $q.notify('恢复成功')
+      })
+    }
     const restartConnect = (row) => {
       ConnectorsLifecycleControllerService.restart({
         cluster: groupId,
-        connectorname: row.name,
+        connectorname: row.name
       }).then((r) => {
-        $q.notify("重启成功");
-      });
-    };
+        $q.notify('重启成功')
+      })
+    }
     return {
       ...toRefs(state),
       ...toRefs(connectorState),
@@ -292,8 +293,8 @@ export default defineComponent({
       pauseConnect,
       resumeConnect,
       restartConnect,
-      parseTaskStatus,
-    };
-  },
-});
+      parseTaskStatus
+    }
+  }
+})
 </script>

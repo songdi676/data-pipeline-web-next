@@ -108,147 +108,147 @@ import {
   onMounted,
   getCurrentInstance,
   reactive,
-  toRefs,
-} from "vue";
-import { useRoute, useRouter } from "vue-router";
-import TopicDetail from "src/pages/kafka/TopicDetail";
+  toRefs
+} from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import TopicDetail from 'src/pages/kafka/TopicDetail'
 
 export default defineComponent({
-  name: "KafkaClusterDetail",
-components: { TopicDetail },
-  setup(props) {
-    const internalInstance = getCurrentInstance();
-    const route = useRoute();
-    const { clusterId } = route.query;
+  name: 'KafkaClusterDetail',
+  components: { TopicDetail },
+  setup (props) {
+    const internalInstance = getCurrentInstance()
+    const route = useRoute()
+    const { clusterId } = route.query
     const kafkaApi =
-      internalInstance.appContext.config.globalProperties.$kafkaApi;
-       const kafdropApi =
-      internalInstance.appContext.config.globalProperties.$kafdropApi;
-        onMounted(() => {
-      topicList();
-      getBrokers();
-      getConsumer();
-    });
+      internalInstance.appContext.config.globalProperties.$kafkaApi
+    const kafdropApi =
+      internalInstance.appContext.config.globalProperties.$kafdropApi
+    onMounted(() => {
+      topicList()
+      getBrokers()
+      getConsumer()
+    })
     const tableState = reactive({
       columns: [
         {
-          name: "name",
-          label: "Topic名称",
-          align: "left",
-          field: "name",
+          name: 'name',
+          label: 'Topic名称',
+          align: 'left',
+          field: 'name'
         },
         {
-          name: "Partitions",
-          label: "Partitions",
-          align: "left",
-          field: (row) => row.partitions.length,
+          name: 'Partitions',
+          label: 'Partitions',
+          align: 'left',
+          field: (row) => row.partitions.length
         },
         {
-          name: "operate",
-          align: "left",
-          label: "操作",
-        },
+          name: 'operate',
+          align: 'left',
+          label: '操作'
+        }
       ],
-      rows: [],
-    });
+      rows: []
+    })
     const tabState = reactive({
-      tabName: "Brokers",
-    });
+      tabName: 'Brokers'
+    })
     const detailInfoState = reactive({
-      detailInfo: { name: "sss", config: { topicNum: 0 } },
-    });
-  
+      detailInfo: { name: 'sss', config: { topicNum: 0 } }
+    })
+
     const topicList = (row) => {
       // kafkaApi.clusters.topicsDetail(clusterId).then((r) => {
       //   tableState.rows = r.data.data;
       //   detailInfoState.detailInfo.config.topicNum = r.data.data.length;
       // });
       kafdropApi.topic.getAllTopicsUsingGet1().then((r) => {
-        tableState.rows = r.data;
-        detailInfoState.detailInfo.config.topicNum = r.data.length;
-      });
-    };
+        tableState.rows = r.data
+        detailInfoState.detailInfo.config.topicNum = r.data.length
+      })
+    }
     const brokerstableState = reactive({
       brokersColumns: [
         {
-          name: "broker_id",
-          label: "ID",
-          align: "left",
-          field: "broker_id",
+          name: 'broker_id',
+          label: 'ID',
+          align: 'left',
+          field: 'broker_id'
         },
         {
-          name: "kind",
-          label: "类型",
-          align: "left",
-          field: "kind",
+          name: 'kind',
+          label: '类型',
+          align: 'left',
+          field: 'kind'
         },
         {
-          name: "host",
-          label: "Host",
-          align: "left",
-          field: "host",
+          name: 'host',
+          label: 'Host',
+          align: 'left',
+          field: 'host'
         },
         {
-          name: "port",
-          label: "Port",
-          align: "left",
-          field: "port",
+          name: 'port',
+          label: 'Port',
+          align: 'left',
+          field: 'port'
         },
         {
-          name: "operate",
-          align: "left",
-          label: "操作",
-        },
+          name: 'operate',
+          align: 'left',
+          label: '操作'
+        }
       ],
-      brokersRows: [],
-    });
+      brokersRows: []
+    })
     const getBrokers = (row) => {
       kafkaApi.clusters.brokersDetail(clusterId).then((r) => {
-        brokerstableState.brokersRows = r.data.data;
-      });
-    };
+        brokerstableState.brokersRows = r.data.data
+      })
+    }
     const consumertableState = reactive({
       consumerColumns: [
         {
-          name: "consumer_group_id",
-          label: "ConsumerGroup",
-          align: "left",
-          field: "consumer_group_id",
+          name: 'consumer_group_id',
+          label: 'ConsumerGroup',
+          align: 'left',
+          field: 'consumer_group_id'
         },
         {
-          name: "kind",
-          label: "类型",
-          align: "left",
-          field: "kind",
+          name: 'kind',
+          label: '类型',
+          align: 'left',
+          field: 'kind'
         },
         {
-          name: "state",
-          label: "state",
-          align: "left",
-          field: "state",
+          name: 'state',
+          label: 'state',
+          align: 'left',
+          field: 'state'
         },
         {
-          name: "operate",
-          align: "left",
-          label: "操作",
-        },
+          name: 'operate',
+          align: 'left',
+          label: '操作'
+        }
       ],
-      consumerRows: [],
-    });
+      consumerRows: []
+    })
     const getConsumer = (row) => {
       kafkaApi.clusters.consumerGroupsDetail(clusterId).then((r) => {
-        consumertableState.consumerRows = r.data.data;
-      });
-    };
+        consumertableState.consumerRows = r.data.data
+      })
+    }
 
-  const topicDetailState = reactive({
+    const topicDetailState = reactive({
       topicDetailInfo: {},
-      topicDetailDialog: false,
-    });
-    const topicDetail= (row) => {
-      topicDetailState.topicDetailInfo=row
-     topicDetailState.topicDetailDialog=true
-    };
+      topicDetailDialog: false
+    })
+    const topicDetail = (row) => {
+      topicDetailState.topicDetailInfo = row
+      topicDetailState.topicDetailDialog = true
+    }
 
     return {
       ...toRefs(tableState),
@@ -256,10 +256,10 @@ components: { TopicDetail },
       ...toRefs(brokerstableState),
       ...toRefs(tabState),
       ...toRefs(consumertableState),
-...toRefs(topicDetailState),
+      ...toRefs(topicDetailState),
       topicList,
       topicDetail
-    };
-  },
-});
+    }
+  }
+})
 </script>

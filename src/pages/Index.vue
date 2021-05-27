@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import { defineComponent,onMounted,getCurrentInstance  } from 'vue';
-import { ConnectClustersControllerService,serviceOptions } from 'src/api/data-pipeline/indexv3'
+import { defineComponent, onMounted, getCurrentInstance } from 'vue'
+import { ConnectClustersControllerService, serviceOptions } from 'src/api/data-pipeline/indexv3'
 
 export default defineComponent({
-  name: 'PageIndex',
+  name: 'PageIndex'
 
 })
 </script>
