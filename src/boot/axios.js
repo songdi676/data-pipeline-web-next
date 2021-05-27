@@ -1,10 +1,9 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
 
-import {Api,HttpClient} from "src/api/DataPipeline.js"
-import {Api as KafkaApi,HttpClient as KafkaHttp} from "src/api/KafkaRest.js"
-import {Api as KafdropApi,HttpClient as KafdropHttp} from "src/api/Kafdrop.js"
-
+import { Api, HttpClient } from 'src/api/DataPipeline.js'
+import { Api as KafkaApi, HttpClient as KafkaHttp } from 'src/api/KafkaRest.js'
+import { Api as KafdropApi, HttpClient as KafdropHttp } from 'src/api/Kafdrop.js'
 
 const api = axios.create({ baseURL: '' })
 const httpClient = new HttpClient({ baseURL: '/' })

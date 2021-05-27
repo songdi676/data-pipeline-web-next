@@ -14,39 +14,39 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
 export default defineComponent({
-  name: "EssentialLink",
+  name: 'EssentialLink',
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
 
     caption: {
       type: String,
-      default: "",
+      default: ''
     },
 
     link: {
       type: String,
-      default: "#",
+      default: '#'
     },
 
     icon: {
       type: String,
-      default: "",
-    },
+      default: ''
+    }
   },
-  setup(props) {
-    const router = useRouter();
+  setup (props) {
+    const router = useRouter()
     const onClick = () => {
-      router.push({ path: props.link });
-    };
+      router.push({ path: props.link })
+    }
     return {
-      onClick,
-    };
-  },
-});
+      onClick
+    }
+  }
+})
 </script>

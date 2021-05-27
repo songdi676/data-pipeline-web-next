@@ -258,7 +258,6 @@ export default defineComponent({
       })
     }
     const pauseConnect = (row) => {
-      debugger
       ConnectorsLifecycleControllerService.pause({
         cluster: groupId,
         connectorname: row.name
