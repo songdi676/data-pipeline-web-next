@@ -17,7 +17,6 @@
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "kafka-rest-client-axios": "0.0.1",
     "quasar": "^2.0.0-beta.1"
   },
   "devDependencies": {
