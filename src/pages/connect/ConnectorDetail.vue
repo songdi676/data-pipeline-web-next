@@ -98,79 +98,79 @@ import {
   onMounted,
   getCurrentInstance,
   reactive,
-  toRefs,
-} from "vue";
+  toRefs
+} from 'vue'
 import {
   ConnectorsControllerService,
   ConnectorsLifecycleControllerService,
-  serviceOptions,
-} from "src/api/data-pipeline/indexv3";
-import { useRoute, useRouter } from "vue-router";
-import { useQuasar } from "quasar";
+  serviceOptions
+} from 'src/api/data-pipeline/indexv3'
+import { useRoute, useRouter } from 'vue-router'
+import { useQuasar } from 'quasar'
 export default defineComponent({
-  name: "ConnectorDetail",
+  name: 'ConnectorDetail',
   props: {
     detailInfo: {
-      type: Object,
-    },
+      type: Object
+    }
   },
-  setup(props, ctx) {
-    const internalInstance = getCurrentInstance();
-    const router = useRouter();
-    const route = useRoute();
-    const $q = useQuasar();
+  setup (props, ctx) {
+    const internalInstance = getCurrentInstance()
+    const router = useRouter()
+    const route = useRoute()
+    const $q = useQuasar()
     serviceOptions.axios =
-      internalInstance.appContext.config.globalProperties.$api;
-    const { groupId } = route.query;
+      internalInstance.appContext.config.globalProperties.$api
+    const { groupId } = route.query
     const tableState = reactive({
       columns: [
         {
-          name: "id",
-          label: "任务ID",
-          align: "left",
-          field: "id",
+          name: 'id',
+          label: '任务ID',
+          align: 'left',
+          field: 'id'
         },
         {
-          name: "state",
-          label: "状态",
-          align: "left",
-          field: "state",
+          name: 'state',
+          label: '状态',
+          align: 'left',
+          field: 'state'
         },
         {
-          name: "workerId",
-          label: "WorkerId",
-          align: "left",
-          field: "worker_id",
+          name: 'workerId',
+          label: 'WorkerId',
+          align: 'left',
+          field: 'worker_id'
         },
         {
-          name: "operate",
-          align: "left",
-          label: "操作",
-        },
+          name: 'operate',
+          align: 'left',
+          label: '操作'
+        }
       ],
-      rows: [],
-    });
+      rows: []
+    })
     const connectorState = reactive({
       connectorState: {
-        RUNNING: "positive",
-        FAILED: "negative",
-        PAUSED: "grey-6",
-      },
-    });
+        RUNNING: 'positive',
+        FAILED: 'negative',
+        PAUSED: 'grey-6'
+      }
+    })
     const restartTask = (row) => {
       ConnectorsLifecycleControllerService.restart1({
         cluster: groupId,
         connectorname: props.detailInfo.name,
-        tasknumber: row.id,
+        tasknumber: row.id
       }).then((r) => {
-        $q.notify("重启成功");
-      });
-    };
+        $q.notify('重启成功')
+      })
+    }
     return {
       ...toRefs(tableState),
       ...toRefs(connectorState),
-      restartTask,
-    };
-  },
-});
+      restartTask
+    }
+  }
+})
 </script>
