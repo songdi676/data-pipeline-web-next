@@ -145,7 +145,7 @@ import {
   ConnectorsLifecycleControllerService,
   serviceOptions
 } from 'src/api/data-pipeline/indexv3'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useQuasar } from 'quasar'
 import ConnectorDetail from 'src/pages/connect/ConnectorDetail.vue'
 export default defineComponent({
@@ -153,7 +153,6 @@ export default defineComponent({
   components: { ConnectorDetail },
   setup () {
     const internalInstance = getCurrentInstance()
-    const router = useRouter()
     const route = useRoute()
     const $q = useQuasar()
     serviceOptions.axios =

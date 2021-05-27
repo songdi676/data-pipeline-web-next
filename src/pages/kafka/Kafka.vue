@@ -35,7 +35,7 @@ import {
   reactive,
   toRefs
 } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'Kafka',
   setup () {

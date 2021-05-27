@@ -75,7 +75,7 @@ const linksList = [
     icon: 'record_voice_over',
     link: 'https://forum.quasar.dev'
   }
-];
+]
 
 import { defineComponent, ref } from 'vue'
 

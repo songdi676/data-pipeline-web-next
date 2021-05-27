@@ -110,7 +110,7 @@ import {
   reactive,
   toRefs
 } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import TopicDetail from 'src/pages/kafka/TopicDetail'
 
 export default defineComponent({

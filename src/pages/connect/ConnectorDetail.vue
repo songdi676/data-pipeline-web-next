@@ -95,17 +95,15 @@
 <script>
 import {
   defineComponent,
-  onMounted,
   getCurrentInstance,
   reactive,
   toRefs
 } from 'vue'
 import {
-  ConnectorsControllerService,
   ConnectorsLifecycleControllerService,
   serviceOptions
 } from 'src/api/data-pipeline/indexv3'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useQuasar } from 'quasar'
 export default defineComponent({
   name: 'ConnectorDetail',
@@ -116,7 +114,6 @@ export default defineComponent({
   },
   setup (props, ctx) {
     const internalInstance = getCurrentInstance()
-    const router = useRouter()
     const route = useRoute()
     const $q = useQuasar()
     serviceOptions.axios =

@@ -109,7 +109,7 @@ import {
   ConnectClustersControllerService,
   serviceOptions
 } from 'src/api/data-pipeline/indexv3'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
 export default defineComponent({
   name: 'ConnectClustersList',
