@@ -10,6 +10,7 @@
     </q-breadcrumbs>
     <q-table
       wrap-cells
+      dense
       title="Table"
       :rows="rows"
       :columns="columns"
@@ -17,9 +18,8 @@
     >
       <template v-slot:body-cell-operate="props">
         <q-td :props="props">
-          <div class="q-pa-md q-gutter-sm">
-            <q-btn color="primary" label="详情" @click="detail(props.row)" />
-          </div>
+            <q-btn   color="primary" label="详情" @click="detail(props.row)" />
+
         </q-td>
       </template>
     </q-table>

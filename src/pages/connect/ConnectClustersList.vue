@@ -16,7 +16,7 @@
     >
       <template v-slot:body-cell-status="props">
         <q-td :props="props">
-          <div class="q-pa-md q-gutter-sm">
+          <div class="q-gutter-sm">
             <q-badge
               :key="index"
               v-for="(item, index) in props.row.status.conditions"
@@ -28,7 +28,7 @@
       </template>
       <template v-slot:body-cell-operate="props">
         <q-td :props="props">
-          <div class="q-pa-md q-gutter-sm">
+          <div class="q-gutter-sm">
             <q-btn
               color="red"
               label="删除"
@@ -81,7 +81,7 @@
               (val) => (val > 0 && val < 100) || 'Please type a real age',
             ]"
           />
-          <div class="q-pa-md q-gutter-sm">
+          <div class="q-gutter-sm">
             <q-btn label="提交" type="submit" color="primary" />
             <q-btn
               label="取消"

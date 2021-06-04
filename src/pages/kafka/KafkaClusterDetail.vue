@@ -49,7 +49,7 @@
             >
               <template v-slot:body-cell-operate="props">
                 <q-td :props="props">
-                  <div class="q-pa-md q-gutter-sm">
+                  <div class="q-gutter-sm">
                     <q-btn color="primary" label="详情" />
                   </div>
                 </q-td>
@@ -67,7 +67,7 @@
             >
               <template v-slot:body-cell-operate="props">
                 <q-td :props="props">
-                  <div class="q-pa-md q-gutter-sm">
+                  <div class="q-gutter-sm">
                     <q-btn color="primary" label="详情" @click="topicDetail(props.row)"/>
                   </div>
                 </q-td>
@@ -84,7 +84,7 @@
             >
               <template v-slot:body-cell-operate="props">
                 <q-td :props="props">
-                  <div class="q-pa-md q-gutter-sm">
+                  <div class=" q-gutter-sm">
                     <q-btn color="primary" label="详情" />
                   </div>
                 </q-td>

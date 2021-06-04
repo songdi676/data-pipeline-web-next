@@ -37,7 +37,7 @@
       </template>
       <template v-slot:body-cell-state="props">
         <q-td :props="props">
-          <div class="q-pa-md q-gutter-sm">
+          <div class="q-gutter-sm">
             <q-chip
               square
               :color="connectorState[props.row.state]"
