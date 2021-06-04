@@ -1,15 +1,15 @@
-const { generateApi } = require('swagger-typescript-api');
-const path = require("path");
-const fs = require("fs");
+const { generateApi } = require('swagger-typescript-api')
+const path = require('path')
+const fs = require('fs')
 
 /* NOTE: all fields are optional expect one of `output`, `url`, `spec` */
 generateApi({
-  name: "DataPipeline.ts",
-  output: path.resolve(process.cwd(), "./src/api"),
-  url: 'http://10.1.8.13:32110/v3/api-docs',
+  name: 'DataPipeline.ts',
+  output: path.resolve(process.cwd(), './src/api'),
+  url: 'http://10.1.8.33:32310/v3/api-docs',
   input: path.resolve(process.cwd(), './kafka-rest-openapi.yaml'),
 
-  httpClientType: "axios", // or "fetch"
+  httpClientType: 'axios', // or "fetch"
   defaultResponseAsSuccess: false,
   generateRouteTypes: false,
   generateResponses: true,
@@ -19,10 +19,10 @@ generateApi({
   prettier: {
     printWidth: 120,
     tabWidth: 2,
-    trailingComma: "all",
-    parser: "typescript",
+    trailingComma: 'all',
+    parser: 'typescript'
   },
-  defaultResponseType: "void",
+  defaultResponseType: 'void',
   singleHttpClient: true,
   cleanOutput: false,
   enumNamesAsValues: false,
@@ -38,13 +38,12 @@ generateApi({
     onFormatTypeName: (typeName, rawTypeName) => {},
     onInit: (configuration) => {},
     onParseSchema: (originalSchema, parsedSchema) => {},
-    onPrepareConfig: (currentConfiguration) => {},
+    onPrepareConfig: (currentConfiguration) => {}
   }
 })
   .then(({ files, configuration }) => {
     files.forEach(({ content, name }) => {
-      fs.writeFile(path, content);
-    });
+      fs.writeFile(path, content)
+    })
   })
   .catch(e => console.error(e))
-

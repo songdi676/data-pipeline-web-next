@@ -79,25 +79,25 @@ module.exports = configure(function (ctx) {
       open: true, // opens browser window automatically
       proxy: {
         '/data-pipeline': {
-          target: 'http://10.1.8.20:32110',
+          target: 'http://10.1.8.33:32310',
           changeOrigin: true
         },
         '/kafka-rest': {
-          target: 'http://10.1.8.20:32211',
+          target: 'http://10.1.8.33:32311',
           changeOrigin: true,
           pathRewrite: {
             '^/kafka-rest': ''
           }
         },
         '/burrow': {
-          target: 'http://10.1.8.20:32212',
+          target: 'http://10.1.8.33:32312',
           changeOrigin: true,
           pathRewrite: {
             '^/burrow': ''
           }
         },
         '/kafdrop': {
-          target: 'http://10.1.8.20:32213',
+          target: 'http://10.1.8.33:32313',
           changeOrigin: true,
           pathRewrite: {
             '^/kafdrop': ''

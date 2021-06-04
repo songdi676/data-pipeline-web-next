@@ -67,7 +67,7 @@ const linksList = [
     title: '数据源',
     caption: 'Data Source',
     icon: 'chat',
-    link: 'https://chat.quasar.dev'
+    link: '/datasource'
   },
   {
     title: '序列同步',

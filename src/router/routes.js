@@ -8,7 +8,9 @@ const routes = [
       { path: '/connect-clusters', component: () => import('pages/connect/ConnectClustersList.vue') },
       { path: '/connect-detail', component: () => import('pages/connect/ConnectClusterDetail.vue') },
       { path: '/kafka', component: () => import('pages/kafka/Kafka.vue') },
-      { path: '/kafka-detail', component: () => import('pages/kafka/KafkaClusterDetail.vue') }
+      { path: '/kafka-detail', component: () => import('pages/kafka/KafkaClusterDetail.vue') },
+      { path: '/datasource', component: () => import('pages/datasource/DataSourceList.vue') },
+      { path: '/datasource-detail', component: () => import('pages/datasource/DataSourceDetail.vue') }
     ]
   },
 

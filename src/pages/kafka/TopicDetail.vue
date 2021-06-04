@@ -1,35 +1,38 @@
 <template>
-  <div>
-    <q-table
-      wrap-cells
-      title="分区"
-      :rows="partitionRows"
-      :columns="partitionColumns"
-      row-key="consumer_group_id"
-    >
-      <template v-slot:body-cell-operate="props">
-        <q-td :props="props">
-          <div class="q-pa-md q-gutter-sm">
-            <q-btn color="primary" label="详情" />
-          </div>
-        </q-td>
-      </template>
-    </q-table>
-    <q-table
-      wrap-cells
-      title="消费者"
-      :rows="consumerRows"
-      :columns="consumerColumns"
-      row-key="groupId"
-    >
-      <template v-slot:body-cell-operate="props">
-        <q-td :props="props">
-          <div class="q-pa-md q-gutter-sm">
-            <q-btn color="primary" label="详情" />
-          </div>
-        </q-td>
-      </template>
-    </q-table>
+  <div class="q-pa-md q-gutter-sm">
+    <q-card>
+      <q-table
+        wrap-cells
+        title="分区"
+        :rows="partitionRows"
+        :columns="partitionColumns"
+        row-key="consumer_group_id"
+      >
+        <template v-slot:body-cell-operate="props">
+          <q-td :props="props">
+            <div class="q-pa-md q-gutter-sm">
+              <q-btn color="primary" label="详情" />
+            </div>
+          </q-td>
+        </template>
+      </q-table>
+      <q-table
+        wrap-cells
+        title="消费者"
+        :rows="consumerRows"
+        :columns="consumerColumns"
+        row-key="groupId"
+      >
+        <template v-slot:body-cell-operate="props">
+          <q-td :props="props">
+            <div class="q-pa-md q-gutter-sm">
+              <q-btn color="primary" label="详情" />
+            </div>
+
+          </q-td>
+        </template>
+      </q-table>
+    </q-card>
   </div>
 </template>
 

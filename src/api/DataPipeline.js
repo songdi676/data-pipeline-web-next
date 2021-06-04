@@ -52,7 +52,7 @@ export class HttpClient {
         url: path,
       });
     };
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "http://10.1.8.13:32110" });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "http://10.1.8.33:32310" });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -75,7 +75,7 @@ export class HttpClient {
  * @version 1.0
  * @license Apache 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
  * @termsOfService urn:tos
- * @baseUrl http://10.1.8.13:32110
+ * @baseUrl http://10.1.8.33:32310
  * @contact
  *
  * Api Documentation
@@ -588,6 +588,118 @@ export class Api {
         this.http.request({
           path: `/data-pipeline/connector/${cluster}/${connectorname}/task/${tasknumber}/restart`,
           method: "POST",
+          ...params,
+        }),
+      /**
+       * No description
+       *
+       * @tags data-source-controller
+       * @name AddDataSourceUsingPost
+       * @summary addDataSource
+       * @request POST:/data-pipeline/datasource
+       * @response `200` `ConfigKeyInfo` OK
+       * @response `201` `void` Created
+       * @response `401` `void` Unauthorized
+       * @response `403` `void` Forbidden
+       * @response `404` `void` Not Found
+       */
+      addDataSourceUsingPost: (data, params = {}) =>
+        this.http.request({
+          path: `/data-pipeline/datasource`,
+          method: "POST",
+          body: data,
+          type: ContentType.Json,
+          ...params,
+        }),
+      /**
+       * No description
+       *
+       * @tags data-source-controller
+       * @name GetDatasourceUsingGet
+       * @summary getDatasource
+       * @request GET:/data-pipeline/datasource/list
+       * @response `200` `(DataSourceVo)[]` OK
+       * @response `401` `void` Unauthorized
+       * @response `403` `void` Forbidden
+       * @response `404` `void` Not Found
+       */
+      getDatasourceUsingGet: (params = {}) =>
+        this.http.request({
+          path: `/data-pipeline/datasource/list`,
+          method: "GET",
+          ...params,
+        }),
+      /**
+       * No description
+       *
+       * @tags data-source-controller
+       * @name DeleteDataSourceUsingDelete
+       * @summary deleteDataSource
+       * @request DELETE:/data-pipeline/datasource/{name}
+       * @response `200` `ConfigKeyInfo` OK
+       * @response `204` `void` No Content
+       * @response `401` `void` Unauthorized
+       * @response `403` `void` Forbidden
+       */
+      deleteDataSourceUsingDelete: (name, params = {}) =>
+        this.http.request({
+          path: `/data-pipeline/datasource/${name}`,
+          method: "DELETE",
+          ...params,
+        }),
+      /**
+       * No description
+       *
+       * @tags data-source-controller
+       * @name FetchStatReplicationInfoUsingGet
+       * @summary fetchStatReplicationInfo
+       * @request GET:/data-pipeline/datasource/{name}/replication-stat/list
+       * @response `200` `(ReplicationStat)[]` OK
+       * @response `401` `void` Unauthorized
+       * @response `403` `void` Forbidden
+       * @response `404` `void` Not Found
+       */
+      fetchStatReplicationInfoUsingGet: (name, query, params = {}) =>
+        this.http.request({
+          path: `/data-pipeline/datasource/${name}/replication-stat/list`,
+          method: "GET",
+          query: query,
+          ...params,
+        }),
+      /**
+       * No description
+       *
+       * @tags data-source-controller
+       * @name FetchAllReplicationSlotInfoUsingGet
+       * @summary fetchAllReplicationSlotInfo
+       * @request GET:/data-pipeline/datasource/{name}/slot/list
+       * @response `200` `(ReplicationSlot)[]` OK
+       * @response `401` `void` Unauthorized
+       * @response `403` `void` Forbidden
+       * @response `404` `void` Not Found
+       */
+      fetchAllReplicationSlotInfoUsingGet: (name, params = {}) =>
+        this.http.request({
+          path: `/data-pipeline/datasource/${name}/slot/list`,
+          method: "GET",
+          ...params,
+        }),
+      /**
+       * No description
+       *
+       * @tags data-source-controller
+       * @name GetTableInfoListUsingGet
+       * @summary getTableInfoList
+       * @request GET:/data-pipeline/datasource/{name}/{schema}/table/list
+       * @response `200` `(Table)[]` OK
+       * @response `401` `void` Unauthorized
+       * @response `403` `void` Forbidden
+       * @response `404` `void` Not Found
+       */
+      getTableInfoListUsingGet: (name, schema, params = {}) =>
+        this.http.request({
+          path: `/data-pipeline/datasource/${name}/${schema}/table/list`,
+          method: "GET",
           ...params,
         }),
     };

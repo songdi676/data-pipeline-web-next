@@ -34,6 +34,22 @@ export interface AzureFileVolumeSource {
   secretName?: string;
   shareName?: string;
 }
+export interface BestRowIdentifier {
+  /** @format int32 */
+  bufferLength?: number;
+  columnName?: string;
+  /** @format int32 */
+  columnSize?: number;
+  /** @format int32 */
+  dataType?: number;
+  /** @format int32 */
+  decimalDigits?: number;
+  /** @format int32 */
+  pseudoColumn?: number;
+  /** @format int32 */
+  scope?: number;
+  typeName?: string;
+}
 export interface CSIVolumeSource {
   driver?: string;
   fsType?: string;
@@ -58,6 +74,53 @@ export interface CinderVolumeSource {
   readOnly?: boolean;
   secretRef?: LocalObjectReference;
   volumeID?: string;
+}
+export interface Column {
+  /** @format int32 */
+  bufferLength?: number;
+  /** @format int32 */
+  charOctetLength?: number;
+  columnDef?: string;
+  columnName?: string;
+  /** @format int32 */
+  columnSize?: number;
+  /** @format int32 */
+  dataType?: number;
+  /** @format int32 */
+  decimalDigits?: number;
+  isAutoincrement?: string;
+  isGeneratedcolumn?: string;
+  isNullable?: string;
+  /** @format int32 */
+  nullable?: number;
+  /** @format int32 */
+  numPrecRadix?: number;
+  /** @format int32 */
+  ordinalPosition?: number;
+  remarks?: string;
+  scopeCatalog?: string;
+  scopeSchema?: string;
+  scopeTable?: string;
+  /** @format int32 */
+  sourceDataType?: number;
+  /** @format int32 */
+  sqlDataType?: number;
+  /** @format int32 */
+  sqlDatetimeSub?: number;
+  tableCat?: string;
+  tableName?: string;
+  tableSchem?: string;
+  typeName?: string;
+}
+export interface ColumnPrivilege {
+  columnName?: string;
+  grantee?: string;
+  grantor?: string;
+  isGrantable?: string;
+  privilege?: string;
+  tableCat?: string;
+  tableName?: string;
+  tableSchem?: string;
 }
 export interface ConfigInfo {
   definition?: ConfigKeyInfo;
@@ -190,6 +253,17 @@ export interface ContainerPort {
   hostPort?: number;
   name?: string;
   protocol?: string;
+}
+export interface DataSourceVo {
+  dbname?: string;
+  hostname?: string;
+  name?: string;
+  password?: string;
+  /** @format int32 */
+  port?: number;
+  schemaName?: string;
+  url?: string;
+  username?: string;
 }
 export interface Deployment {
   apiVersion?: string;
@@ -379,6 +453,25 @@ export interface ISCSIVolumeSource {
   secretRef?: LocalObjectReference;
   targetPortal?: string;
 }
+export interface IndexInfo {
+  ascOrDesc?: string;
+  /** @format int64 */
+  cardinality?: number;
+  columnName?: string;
+  filterCondition?: string;
+  indexName?: string;
+  indexQualifier?: string;
+  nonUnique?: boolean;
+  /** @format int32 */
+  ordinalPosition?: number;
+  /** @format int64 */
+  pages?: number;
+  tableCat?: string;
+  tableName?: string;
+  tableSchem?: string;
+  /** @format int32 */
+  type?: number;
+}
 export interface IntOrString {
   /** @format int32 */
   IntVal?: number;
@@ -407,6 +500,11 @@ export interface Lifecycle {
 }
 export interface LocalObjectReference {
   name?: string;
+}
+export interface Lsn {
+  valid?: boolean;
+  /** @format int64 */
+  value?: number;
 }
 export interface ManagedFieldsEntry {
   apiVersion?: string;
@@ -646,6 +744,15 @@ export interface PreferredSchedulingTerm {
   /** @format int32 */
   weight?: number;
 }
+export interface PrimaryKey {
+  columnName?: string;
+  /** @format int32 */
+  keySeq?: number;
+  pkName?: string;
+  tableCat?: string;
+  tableName?: string;
+  tableSchem?: string;
+}
 export interface Probe {
   exec?: ExecAction;
   /** @format int32 */
@@ -665,6 +772,25 @@ export interface ProjectedVolumeSource {
   /** @format int32 */
   defaultMode?: number;
   sources?: VolumeProjection[];
+}
+export interface PseudoColumn {
+  /** @format int32 */
+  charOctetLength?: number;
+  columnName?: string;
+  /** @format int32 */
+  columnSize?: number;
+  columnUsage?: string;
+  /** @format int32 */
+  dataType?: number;
+  /** @format int32 */
+  decimalDigits?: number;
+  isNullable?: string;
+  /** @format int32 */
+  numPrecRadix?: number;
+  remarks?: string;
+  tableCat?: string;
+  tableName?: string;
+  tableSchem?: string;
 }
 export interface Quantity {
   amount?: string;
@@ -687,6 +813,48 @@ export interface RBDVolumeSource {
   readOnly?: boolean;
   secretRef?: LocalObjectReference;
   user?: string;
+}
+export interface ReplicationSlot {
+  active?: boolean;
+  /** @format int64 */
+  catalogXmin?: number;
+  currentWalLsn?: Lsn;
+  latestFlushedLsn?: Lsn;
+  restartLsn?: Lsn;
+  slotName?: string;
+  slotType?: string;
+}
+export interface ReplicationStat {
+  applicationName?: string;
+  backendStart?: string;
+  backendXmin?: string;
+  clientAddr?: string;
+  clientHostname?: string;
+  /** @format int32 */
+  clientPort?: number;
+  flushLag?: string;
+  flushLsn?: string;
+  /** @format int64 */
+  flushLsnValue?: number;
+  /** @format int32 */
+  pid?: number;
+  replayLag?: string;
+  replayLsn?: string;
+  /** @format int64 */
+  replayLsnValue?: number;
+  replyTime?: string;
+  sentLsn?: string;
+  /** @format int64 */
+  sentLsnValue?: number;
+  state?: string;
+  syncPriority?: string;
+  syncState?: string;
+  usename?: string;
+  usesysid?: string;
+  writeLag?: string;
+  writeLsn?: string;
+  /** @format int64 */
+  writeLsnValue?: number;
 }
 export interface ResourceFieldSelector {
   containerName?: string;
@@ -767,6 +935,12 @@ export interface StorageOSVolumeSource {
   volumeName?: string;
   volumeNamespace?: string;
 }
+export interface SuperTable {
+  supertableName?: string;
+  tableCat?: string;
+  tableName?: string;
+  tableSchem?: string;
+}
 export interface Sysctl {
   name?: string;
   value?: string;
@@ -774,6 +948,36 @@ export interface Sysctl {
 export interface TCPSocketAction {
   host?: string;
   port?: IntOrString;
+}
+export interface Table {
+  bestRowIdentifiers?: BestRowIdentifier[];
+  columnPrivileges?: ColumnPrivilege[];
+  columns?: Column[];
+  indexInfo?: IndexInfo[];
+  primaryKeys?: PrimaryKey[];
+  pseudoColumns?: PseudoColumn[];
+  refGeneration?: string;
+  remarks?: string;
+  selfReferencingColName?: string;
+  superTables?: SuperTable[];
+  tableCat?: string;
+  tableName?: string;
+  tablePrivileges?: TablePrivilege[];
+  tableSchem?: string;
+  tableType?: string;
+  typeCat?: string;
+  typeName?: string;
+  typeSchem?: string;
+  versionColumns?: VersionColumn[];
+}
+export interface TablePrivilege {
+  grantee?: string;
+  grantor?: string;
+  isGrantable?: string;
+  privilege?: string;
+  tableCat?: string;
+  tableName?: string;
+  tableSchem?: string;
 }
 export interface TaskState {
   /** @format int32 */
@@ -796,6 +1000,22 @@ export interface TopologySpreadConstraint {
   maxSkew?: number;
   topologyKey?: string;
   whenUnsatisfiable?: string;
+}
+export interface VersionColumn {
+  /** @format int32 */
+  bufferLength?: number;
+  columnName?: string;
+  /** @format int32 */
+  columnSize?: number;
+  /** @format int32 */
+  dataType?: number;
+  /** @format int32 */
+  decimalDigits?: number;
+  /** @format int32 */
+  pseudoColumn?: number;
+  /** @format int32 */
+  scope?: number;
+  typeName?: string;
 }
 export interface View {
   contentType?: string;
@@ -918,7 +1138,7 @@ export declare class HttpClient<SecurityDataType = unknown> {
  * @version 1.0
  * @license Apache 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
  * @termsOfService urn:tos
- * @baseUrl http://10.1.8.13:32110
+ * @baseUrl http://10.1.8.33:32310
  * @contact
  *
  * Api Documentation
@@ -1355,5 +1575,93 @@ export declare class Api<SecurityDataType extends unknown> {
       tasknumber: number,
       params?: RequestParams,
     ) => Promise<AxiosResponse<ConfigKeyInfo>>;
+    /**
+     * No description
+     *
+     * @tags data-source-controller
+     * @name AddDataSourceUsingPost
+     * @summary addDataSource
+     * @request POST:/data-pipeline/datasource
+     * @response `200` `ConfigKeyInfo` OK
+     * @response `201` `void` Created
+     * @response `401` `void` Unauthorized
+     * @response `403` `void` Forbidden
+     * @response `404` `void` Not Found
+     */
+    addDataSourceUsingPost: (data: DataSourceVo, params?: RequestParams) => Promise<AxiosResponse<ConfigKeyInfo>>;
+    /**
+     * No description
+     *
+     * @tags data-source-controller
+     * @name GetDatasourceUsingGet
+     * @summary getDatasource
+     * @request GET:/data-pipeline/datasource/list
+     * @response `200` `(DataSourceVo)[]` OK
+     * @response `401` `void` Unauthorized
+     * @response `403` `void` Forbidden
+     * @response `404` `void` Not Found
+     */
+    getDatasourceUsingGet: (params?: RequestParams) => Promise<AxiosResponse<DataSourceVo[]>>;
+    /**
+     * No description
+     *
+     * @tags data-source-controller
+     * @name DeleteDataSourceUsingDelete
+     * @summary deleteDataSource
+     * @request DELETE:/data-pipeline/datasource/{name}
+     * @response `200` `ConfigKeyInfo` OK
+     * @response `204` `void` No Content
+     * @response `401` `void` Unauthorized
+     * @response `403` `void` Forbidden
+     */
+    deleteDataSourceUsingDelete: (name: string, params?: RequestParams) => Promise<AxiosResponse<ConfigKeyInfo>>;
+    /**
+     * No description
+     *
+     * @tags data-source-controller
+     * @name FetchStatReplicationInfoUsingGet
+     * @summary fetchStatReplicationInfo
+     * @request GET:/data-pipeline/datasource/{name}/replication-stat/list
+     * @response `200` `(ReplicationStat)[]` OK
+     * @response `401` `void` Unauthorized
+     * @response `403` `void` Forbidden
+     * @response `404` `void` Not Found
+     */
+    fetchStatReplicationInfoUsingGet: (
+      name: string,
+      query?: {
+        name?: string;
+      },
+      params?: RequestParams,
+    ) => Promise<AxiosResponse<ReplicationStat[]>>;
+    /**
+     * No description
+     *
+     * @tags data-source-controller
+     * @name FetchAllReplicationSlotInfoUsingGet
+     * @summary fetchAllReplicationSlotInfo
+     * @request GET:/data-pipeline/datasource/{name}/slot/list
+     * @response `200` `(ReplicationSlot)[]` OK
+     * @response `401` `void` Unauthorized
+     * @response `403` `void` Forbidden
+     * @response `404` `void` Not Found
+     */
+    fetchAllReplicationSlotInfoUsingGet: (
+      name: string,
+      params?: RequestParams,
+    ) => Promise<AxiosResponse<ReplicationSlot[]>>;
+    /**
+     * No description
+     *
+     * @tags data-source-controller
+     * @name GetTableInfoListUsingGet
+     * @summary getTableInfoList
+     * @request GET:/data-pipeline/datasource/{name}/{schema}/table/list
+     * @response `200` `(Table)[]` OK
+     * @response `401` `void` Unauthorized
+     * @response `403` `void` Forbidden
+     * @response `404` `void` Not Found
+     */
+    getTableInfoListUsingGet: (name: string, schema: string, params?: RequestParams) => Promise<AxiosResponse<Table[]>>;
   };
 }
